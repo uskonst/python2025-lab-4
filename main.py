@@ -26,7 +26,7 @@ best_items = []
 best_score = float('-inf')
 
 # Перебор всех комбинаций предметов
-for count_item in range(NUMBER_ITEMS + 1):
+for count_item in range(1, NUMBER_ITEMS + 1):
     for combinat in combinations(range(NUMBER_ITEMS), count_item):
         size = sum(ITEMS[i][2] for i in combinat)
         if size > CAPACITY:
