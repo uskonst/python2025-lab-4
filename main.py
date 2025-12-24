@@ -27,16 +27,16 @@ best_score = float('-inf')
 
 # Перебор всех комбинаций предметов
 for count_item in range(1, NUMBER_ITEMS + 1):
-    for combinat in combinations(range(NUMBER_ITEMS), count_item):
-        size = sum(ITEMS[i][2] for i in combinat)
+    for combinat in combinations(ITEMS, count_item):
+        size = sum(items[2] for items in combinat)
         if size > CAPACITY:
             continue
 
-        symbols = [ITEMS[i][0] for i in combinat]
+        symbols = [items[0] for items in combinat]
         if REQUIRED_ITEM not in symbols:
             continue
 
-        taken_points = sum(ITEMS[i][3] for i in combinat)
+        taken_points = sum(items[3] for items in combinat)
         not_taken_points = total_all_points - taken_points
         final_points = BASE_POINTS + taken_points - not_taken_points
 
@@ -49,8 +49,8 @@ for count_item in range(1, NUMBER_ITEMS + 1):
 
 # Формирование инвентаря
 cells = []
-for i in best_items:
-    symbol, _, size, _ = ITEMS[i]
+for items in best_items:
+    symbol, _, size, _ = items
     cells.extend([symbol] * size)
 
 cells.extend(['.'] * (CAPACITY - len(cells)))
